@@ -1482,7 +1482,7 @@ func TestBlockHistoryEstimator_Bumps(t *testing.T) {
 			require.NoError(t, err)
 
 			assert.Equal(t, 110000, int(gasLimit))
-			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(1000000), TipCap: big.NewInt(202)}, fee)
+			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(250), TipCap: big.NewInt(202)}, fee)
 		})
 		t.Run("ignores current tip cap that is smaller than original fee with bump applied", func(t *testing.T) {
 			gas.SetTipCap(bhe, big.NewInt(201))
@@ -1492,7 +1492,7 @@ func TestBlockHistoryEstimator_Bumps(t *testing.T) {
 			require.NoError(t, err)
 
 			assert.Equal(t, 110000, int(gasLimit))
-			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(1000000), TipCap: big.NewInt(202)}, fee)
+			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(250), TipCap: big.NewInt(202)}, fee)
 		})
 		t.Run("uses current tip cap that is larger than original fee with bump applied", func(t *testing.T) {
 			gas.SetTipCap(bhe, big.NewInt(203))
@@ -1502,7 +1502,7 @@ func TestBlockHistoryEstimator_Bumps(t *testing.T) {
 			require.NoError(t, err)
 
 			assert.Equal(t, 110000, int(gasLimit))
-			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(1000000), TipCap: big.NewInt(203)}, fee)
+			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(250), TipCap: big.NewInt(203)}, fee)
 		})
 		t.Run("ignores absurdly large current tip cap", func(t *testing.T) {
 			gas.SetTipCap(bhe, big.NewInt(1000000000000000))
@@ -1512,7 +1512,7 @@ func TestBlockHistoryEstimator_Bumps(t *testing.T) {
 			require.NoError(t, err)
 
 			assert.Equal(t, 110000, int(gasLimit))
-			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(1000000), TipCap: big.NewInt(202)}, fee)
+			assert.Equal(t, gas.DynamicFee{FeeCap: big.NewInt(250), TipCap: big.NewInt(202)}, fee)
 		})
 
 		config.AssertExpectations(t)
